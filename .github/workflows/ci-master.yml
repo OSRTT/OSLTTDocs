@@ -1,0 +1,46 @@
+on: 
+  push:
+    branches:
+    - master
+    - main
+
+name: Master branch CI
+
+jobs:
+
+  jekyll-latest:
+    name: Build Jekyll site (latest)
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run --rm \
+        --volume="${{ github.workspace }}:/srv/jekyll" \
+        jekyll/builder:latest /bin/bash -c "gem install bundler:2.1.4 && chmod -R 777 /srv/jekyll && bundle _2.1.4_ install && bundle _2.1.4_ exec jekyll build && bundle _2.1.4_ exec rake search:init"
+  jekyll-3-8-5:
+    name: Build Jekyll site (v3.8.5)
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@master
+
+    - name: Build the site in the jekyll/builder container
+      run: |
+        docker run --rm \
+        --volume="${{ github.workspace }}:/srv/jekyll" \
+        jekyll/builder:3.8.5 /bin/bash -c "gem install bundler:2.1.4 && chmod -R 777 /srv/jekyll && bundle _2.1.4_ install && bundle _2.1.4_ exec jekyll build && bundle _2.1.4_ exec rake search:init"
+  assets:
+    name: Format and test CSS and JS
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: npm install
+    - run: npm test
