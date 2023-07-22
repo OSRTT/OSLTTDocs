@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 gemspec
-gem 'wdm', '~> 0.1.1', :install_if => Gem.win_platform?
-gem "webrick"
-gem 'jekyll-seo-tag'
-gem 'jekyll-github-metadata'
+
+gem "jekyll-github-metadata", ">= 2.15"
+
+gem "webrick", "~> 1.7"
