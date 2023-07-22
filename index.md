@@ -18,7 +18,7 @@ Ready to dive in? You can find the software built and ready to install, or the G
 
 # Open Source Latency Testing Tool - OSLTT
 
-In short, OSRTT is my attempt at making an accessible tool for reviewers and enthusiasts to test monitor response times. I should stress, **it is far from perfect.** I've done my best to make it as reliable, accurate and feature rich as possible, but it's important to remember that it's a tool for "trained professionals" and to be used with the understanding that you may need to verify the results in some cases, and that there may be bugs I'm yet to address.
+In short, OSLTT is my attempt at an open source latency testing tool - similar to NVIDIA's LDAT. At launch, the tool is able to do the same custom DirectX test as OSRTT, mouse and keyboard latency testing, in game end to end latency testing, and audio latency testing. It is still in its early stages, so please be patient with me. I'm working on it as hard as my failing mind and body allows!
 
 ## Main Features
 * Response time testing
