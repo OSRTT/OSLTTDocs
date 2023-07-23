@@ -1,75 +1,30 @@
+name: Build Jekyll site
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-
-name: CI
-
+ push:
+   branches: ["main"]
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 jobs:
-  jekyll-build:
-    name: Build (jekyll gem)
-    strategy:
-      fail-fast: false
-      matrix:
-        jekyll-version: [3.9, 4.3]
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
-        ruby-version: [2.7, 3.1]
-    runs-on: ${{ matrix.os }}
-    steps:
-    - uses: actions/checkout@v3
-    - name: Setup Ruby ${{ matrix.ruby-version }}
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: ${{ matrix.ruby-version }}
-        bundler-cache: false
-    - name: Bundle Install (Jekyll ${{ matrix.jekyll-version }})
-      run: bundle install
-      env:
-        BUNDLE_GEMFILE: fixtures/Gemfile-jekyll-${{ matrix.jekyll-version }}
-    - name: Init Search
-      run: bundle exec rake search:init
-      env:
-        BUNDLE_GEMFILE: fixtures/Gemfile-jekyll-${{ matrix.jekyll-version }}
-    - name: Build Site
-      run: bundle exec jekyll build
-      env:
-        BUNDLE_GEMFILE: fixtures/Gemfile-jekyll-${{ matrix.jekyll-version }}
-
-  github-pages-build:
-    name: Build (github-pages gem)
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.1'
-        bundler-cache: false
-    - name: Bundle Install
-      run: bundle install
-      env:
-        BUNDLE_GEMFILE: fixtures/Gemfile-github-pages
-    - name: Build Site
-      run: bundle exec jekyll build
-      env:
-        BUNDLE_GEMFILE: fixtures/Gemfile-github-pages
-
-  assets:
-    name: Test CSS and JS
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      - name: Build
+        uses: actions/jekyll-build-pages@v1
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+  deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [18.x]
-
+    needs: build
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm test
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
