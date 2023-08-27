@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Peripheral Latency Guide
-nav_order: 5
+title: Monitor Latency Guide
+nav_order: 6
 has_children: true
-permalink: docs/peripheral-lag-guide
+permalink: docs/monitor-guide
 ---
 
-# Peripheral Latency Guide
+# Monitor Latency Guide
 ### Version 1.0, last update 27 August 2023
 {: .no_toc }
 

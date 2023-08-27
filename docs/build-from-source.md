@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Building from Source
-nav_order: 6
+nav_order: 10
 ---
 
 # Building from Source

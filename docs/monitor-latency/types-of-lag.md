@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Types of Latency
-parent: Input Latency Guide
-nav_order: 2
+title: Types of Monitor Latency
+parent: Monitor Latency Guide
+nav_order: 1
 ---
 
-# Types of Latency
+# Types of Monitor Latency
 {: .no_toc }
 
 ## On Display Latency
@@ -14,7 +14,7 @@ You can test this with:
 ### Dedicated Testers
 Tools like the Leo Bodnar Latency tester, or the Time Sleuth output frames over HDMI, then wait to register the light level change. Since they know when they sent the frame, they can time how long it takes the monitor to process and draw the frame. These are great, but do come with some limitations. These are often based on an FPGA (field programmable gate array), specifically, low power FPGAs. The Time Sleuth caps out at 1080p60 output, which means for anything higher end than that, the monitor is going to have to translate that 1080p frame up to native resolution - which for a non-direct resolution like 1440p might add unrealistic latency. 
 
-### OSRTT's new trick
+### OSLTT's new trick
 The alternative is using a more complete system, but controlling each step in the event path so you can subtract out any time taken for USB polling and frame processing, leaving you with the on display latency. This is much more realistic as the graphics card will always output the target resolution, and is much closer to how an end user is using their system. The catch to this method is that because it's a computer generating new frames (at a constant rate) rather than a dedicated device which is able to time when a "target" frame leaves the device, this method has to wait for up to a full refresh rate cycle. Much like USB polling delay which can vary from 0.1 to 0.99 ms (at 1000Hz), on a 60Hz display the input latency may report as anything from 0.1 to 16.6 ms, and anywhere in between. Repeating this test will only get you an average of around half the refresh rate, so it's not quite as accurate as you might like. 
 
 ## Total System Latency

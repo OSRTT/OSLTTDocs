@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Peripheral Latency Guide
-nav_order: 5
+title: Audio Latency Guide
+nav_order: 7
 has_children: true
-permalink: docs/peripheral-lag-guide
+permalink: docs/audio-guide
 ---
 
-# Peripheral Latency Guide
+# Audio Latency Guide
 ### Version 1.0, last update 27 August 2023
 {: .no_toc }
 
