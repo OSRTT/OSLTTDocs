@@ -14,7 +14,11 @@ It shouldn't be too difficult for you to get the source code running - there are
 
 ## Arduino CLI
 
-You'll need to put a copy of the [Arduino CLI](https://github.com/arduino/arduino-cli) in the bin/debug or bin/releases folder, inside a folder named "arduinoCLI". If you want the code to be able to push updates to the board you'll also need to copy the "OSRTT_Full_Code" folder from the Hardware folder to the "arduinoCLI" folder as well.
+You'll need to put a copy of the [Arduino CLI](https://github.com/arduino/arduino-cli) in the bin/debug or bin/releases folder, inside a folder named "arduinoCLI".
+
+## Remove Signed Builds
+
+You'll also need to head to the solution properties and disabled signed builds before it'll build.
 
 
 

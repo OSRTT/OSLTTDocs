@@ -8,34 +8,30 @@ nav_order: 3
 {: .no_toc }
 
 
-Assuming you have an OSRTT unit to hand, here's what you'll need to do to get up and running.
+Assuming you have an OSLTT unit to hand, here's what you'll need to do to get up and running.
 {: .fs-6 .fw-300 }
 
 
 ## Install The Software
 
-Head to [the releases page](https://github.com/andymanic/OSRTT/releases/latest) and download the "OSRTT Launcher.exe" file. When you run it Windows will likely say this is an untrusted file, you'll need to click the "more info" link/button, then "Run Anyway". I'll fix that as soon as I work out how... 
+Head to [the releases page](https://github.com/OSRTT/OSLTT/releases/latest) and download the "OSLTT Installer.exe" file. When you run it Windows will likely say this is an untrusted file, you'll need to click the "more info" link/button, then "Run Anyway". I'll fix that as soon as I work out how... 
 
 Anyway, run the installation wizard as usual. It will run the program after you finish (by default anyway). 
 
 You'll be greeted with a message box asking if you want to let the program continue with further setup. You'll need to select yes to make the tool work. 
 
-This installs required Arduino and Adafruit libraries and the required drivers too. You'll need to click "Install" on both driver pop-ups. 
+This installs required Arduino and SEEED libraries and the required drivers too. You'll need to click "Install" on both driver pop-ups. 
+
+It may also ask you to do a firmware update on the board. Updating to the most recent version is almost always recommended
 
 ## Settings
 
-There are a whole bunch of settings everywhere - I'm working on consolidating these into a single easy-access place, but for the time being...
+There are a number of presets that pre-select the correct options to best test the various options. These include:
+* Monitor - uses the DirectX test mode, button trigger and light sensor
+* Mice/Keyboards - uses the click/keypresses input and mouse/keyboard test source
+* Games - uses the light sensor, built in button and game test source
+* Headsets - uses the audio sensor, button trigger and audio clip source
+* Custom - this enables all options for you to select what works best for you
 
-### Main Window - Response Time Test
-- Framerate limit: This setting limits the in-game framerate during the test. This is most useful for testing Variable Refresh Rate (VRR), as you can set the FPS limit to below the monitor's refresh rate, forcing it to refresh slower than normal. Set this to equal or above the quoted refresh rate for normal testing.
-- Number of test runs: This controls how many times you would like the test to repeat before averaging the data. The more runs, the more accurate the data is likely to be. Current maximum is 10.
-- Capture time: Adjust how long per transition the device should capture light samples. Slower monitors, or while testing with VSync ON, should use a longer time (i.e. 150ms+).
-- Vsync State: Toggle VSync on or off. On means more stable results, less prone to capture errors. Off means true input latency results,  but capture errors are more likely. 
-
-### Main Window - Total System Latency Test
-- Time between clicks: How much time should be left between mouse clicks during the test. 0.5s is default.
-- Number of clicks: How many clicks should the test fire before finishing. Default is 20.
-
-### Test Settings
-This is all the settings described in the methodologies section - default is "Recommended".
-
+## Running a test
+The best test to start with is likely the monitor testing mode. After selecting the "Monitor" preset, hit the "Start" button - or press F10 to do the same thing - then your selected display will go black as the DirectX window launches. Give it a moment to start up fully - the FPS counter in the top left should sit at ~1000FPS. Ensure your OSLTT unit is attached light-sensor-side-down to your selected display. You can then press the button on the OSLTT unit, which should make the screen start flashing white. Once it completes the default 100 clicks, the DirectX window will close and the results view window will open.
