@@ -20,6 +20,8 @@ Ready to dive in? You can find the software built and ready to install, or the G
 
 In short, OSLTT is my attempt at an open source latency testing tool - similar to NVIDIA's LDAT. At launch, the tool is able to do the same custom DirectX test as OSRTT, mouse and keyboard latency testing, in game end to end latency testing, and audio latency testing. It is still in its early stages, so please be patient with me. I'm working on it as hard as my failing mind and body allows!
 
+This guide is also a very early iteration. The video guide is much more complete, but I'll aim to add more here too.
+
 ## Main Features
 * Total system / click to photon / end to end latency measurement
 * On Display Latency 
